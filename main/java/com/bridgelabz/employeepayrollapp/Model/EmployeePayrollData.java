@@ -1,10 +1,17 @@
 package com.bridgelabz.employeepayrollapp.Model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import com.bridgelabz.employeepayrollapp.dto.EmployeePayrollDTO;
 
+@Entity
 public class EmployeePayrollData {
     //repository model that we are going to save in database
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int employeeId;
 	private String name;
 	private long salary;
