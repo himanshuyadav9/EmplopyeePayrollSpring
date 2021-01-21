@@ -1,4 +1,4 @@
-/*
+
 package com.bridgelabz.employeepayrollapp.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,4 +10,3 @@ import com.bridgelabz.employeepayrollapp.Model.EmployeePayrollData;
 public interface IEmployeePayrollRepo extends JpaRepository<EmployeePayrollData, Integer> {
 	
 }
-*/
