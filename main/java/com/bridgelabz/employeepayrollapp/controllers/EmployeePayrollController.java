@@ -2,6 +2,8 @@ package com.bridgelabz.employeepayrollapp.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,7 +46,7 @@ public class EmployeePayrollController {
 	}
 
 	@PostMapping("/create")
-	public ResponseEntity<ResponseDTO> addEmployeePayrollData(@RequestBody EmployeePayrollDTO empPayrollDTO) {
+	public ResponseEntity<ResponseDTO> addEmployeePayrollData( @Valid @RequestBody EmployeePayrollDTO empPayrollDTO) {
 		EmployeePayrollData empdata = null;
 		empdata = employeePayrollService.createEmployeePayrollData(empPayrollDTO);
 		
@@ -54,8 +56,8 @@ public class EmployeePayrollController {
 	}
 
 	@PutMapping("/update/{empId}")
-	public ResponseEntity<ResponseDTO> updateEmployeePayrollData(@PathVariable("empId") int empId,
-			@RequestBody EmployeePayrollDTO empPayrollDTO) {
+	public ResponseEntity<ResponseDTO> updateEmployeePayrollData(@Valid @PathVariable("empId") int empId,
+		 	@RequestBody EmployeePayrollDTO empPayrollDTO) {
 		EmployeePayrollData empdata = null;
 		empdata = employeePayrollService.updateEmployeePayrollData(1, empPayrollDTO);
 		ResponseDTO respDTO = new ResponseDTO("Updated Employee Payroll Data Successfully", empdata);
