@@ -3,15 +3,24 @@ package com.bridgelabz.employeepayrollapp.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bridgelabz.employeepayrollapp.Model.EmployeePayrollData;
 import com.bridgelabz.employeepayrollapp.dto.EmployeePayrollDTO;
 import com.bridgelabz.employeepayrollapp.exception.EmployeePayrollException;
+import com.bridgelabz.employeepayrollapp.repository.IEmployeePayrollRepo;
+
+import lombok.extern.slf4j.Slf4j;
 
 
 @Service
+@Slf4j
 public class EmployeePayrollservice implements IEmployeePayrollService {
+	
+	 @Autowired
+	   private IEmployeePayrollRepo employeeRepository;
+	
 	private List<EmployeePayrollData> employeePayrollList = new ArrayList<>();
 
 	@Override
@@ -30,9 +39,10 @@ public class EmployeePayrollservice implements IEmployeePayrollService {
 	@Override
 	public EmployeePayrollData createEmployeePayrollData(EmployeePayrollDTO empPayrollDTO) {
 		EmployeePayrollData empData = null;
-		empData = new EmployeePayrollData(employeePayrollList.size() + 1, empPayrollDTO);
+		empData = new EmployeePayrollData(empPayrollDTO);
 		employeePayrollList.add(empData);
-		return empData;
+		log.debug("Emp Data: " +empData.toString());
+        return employeeRepository.save(empData);
 	}
 
 	@Override

@@ -6,35 +6,50 @@ package com.bridgelabz.employeepayrollapp.Model;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Table;
 
 import com.bridgelabz.employeepayrollapp.dto.EmployeePayrollDTO;
 
 import lombok.Data;
 
-//@Entity
+@Entity
+@Table(name = "employee_payroll")
 public @Data class EmployeePayrollData {
     //repository model that we are going to save in database
-	//@Id
-	//@GeneratedValue(strategy = GenerationType.AUTO)
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "employee_id")
 	private int employeeId;
+	
+	@Column(name = "name")
 	private String name;
 	private long salary;
 	private String gender;
-	private LocalDate startDate;
+	private LocalDate startdate;
 	private String note;
 	private String profilePic;
+	
+	@ElementCollection
+	@CollectionTable(name = "employee_department", joinColumns = @JoinColumn(name = "id"))
+	@Column(name = "department")
 	private List<String> departments;
 
-	public EmployeePayrollData(int empId, EmployeePayrollDTO employeepayrolldto) {
-		this.employeeId = empId;
+	public EmployeePayrollData() {}
+	
+	public EmployeePayrollData(EmployeePayrollDTO employeepayrolldto) {
+		
 		this.name = employeepayrolldto.name;
 		this.salary = employeepayrolldto.salary;
 		this.gender = employeepayrolldto.gender;
-		this.startDate = employeepayrolldto.startDate;
+		this.startdate = employeepayrolldto.startDate;
 		this.note = employeepayrolldto.note;
 		this.profilePic = employeepayrolldto.profilePic;
 		this.departments = employeepayrolldto.departments;
