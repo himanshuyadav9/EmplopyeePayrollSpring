@@ -21,8 +21,11 @@ import com.bridgelabz.employeepayrollapp.dto.EmployeePayrollDTO;
 import com.bridgelabz.employeepayrollapp.dto.ResponseDTO;
 import com.bridgelabz.employeepayrollapp.services.IEmployeePayrollService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RestController
 @RequestMapping("/employeepayrollservice")
+@Slf4j
 public class EmployeePayrollController {
 
 	@Autowired
@@ -47,6 +50,7 @@ public class EmployeePayrollController {
 
 	@PostMapping("/create")
 	public ResponseEntity<ResponseDTO> addEmployeePayrollData( @Valid @RequestBody EmployeePayrollDTO empPayrollDTO) {
+		log.debug("Employee DTO" + empPayrollDTO.toString());
 		EmployeePayrollData empdata = null;
 		empdata = employeePayrollService.createEmployeePayrollData(empPayrollDTO);
 		
