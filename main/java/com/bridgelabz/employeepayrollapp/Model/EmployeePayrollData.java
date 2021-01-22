@@ -15,11 +15,11 @@ import com.bridgelabz.employeepayrollapp.dto.EmployeePayrollDTO;
 
 import lombok.Data;
 
-@Entity
+//@Entity
 public @Data class EmployeePayrollData {
     //repository model that we are going to save in database
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	//@Id
+	//@GeneratedValue(strategy = GenerationType.AUTO)
 	private int employeeId;
 	private String name;
 	private long salary;
